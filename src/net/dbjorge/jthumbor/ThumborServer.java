@@ -16,8 +16,6 @@
 
 package net.dbjorge.jthumbor;
 
-import java.util.Arrays;
-
 import net.dbjorge.jthumbor.ThumborServer.Options.HorizontalAlignment;
 import net.dbjorge.jthumbor.ThumborServer.Options.VerticalAlignment;
 
@@ -146,14 +144,11 @@ public class ThumborServer {
 		// Pad it until its length is a multiple of 16
 		while(optionsUrl.length() % 16 != 0) optionsUrl += "{";
 
-		System.out.println("input: "+optionsUrl);
 		// Encrypt with AES using the stored secure key
 		byte[] encrypted = ThumborUtils.aesEncrypt(mSecureKey, optionsUrl);
-		System.out.println("output: "+Arrays.toString(encrypted));
 
 		// encode it (emulating python's urlsafe_b64encode)
 		String encoded = ThumborUtils.urlSafeBase64Encode(encrypted);
-		System.out.println("encoded: "+encoded);
 
 		return encoded;
 	}
